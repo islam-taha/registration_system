@@ -9,7 +9,7 @@ ruby '2.6.1'
 # Main gems
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
-gem 'sqlite3', '~> 1.4.0'
+gem 'sqlite3', '~> 1.3.6'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -41,6 +41,10 @@ group :development do
 
   # Open mail in dev
   gem 'letter_opener'
+
+  # Better logs
+  gem 'lograge'
+  gem 'foreman'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
