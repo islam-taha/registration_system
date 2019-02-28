@@ -17,6 +17,12 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Better logs
+gem 'lograge'
+
+# Fake it all!
+gem 'faker'
+
 group :development, :test do
   # Debug it!
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -43,7 +49,6 @@ group :development do
   gem 'letter_opener'
 
   # Better logs
-  gem 'lograge'
   gem 'foreman'
 end
 
