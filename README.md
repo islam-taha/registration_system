@@ -1,5 +1,5 @@
 # Registration system
-User registration system without devise-like gems help
+User registration system without devise like gems help
 
 ## Requirements
 ruby version `2.6.1`
