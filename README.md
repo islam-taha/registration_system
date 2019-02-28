@@ -12,6 +12,6 @@ ruby version `2.6.1`
 4. `bundle exec rake db:migrate`
 
 ## Running the server
-- `bundle exec rails s`
+- `bundle exec foreman s -e .env`
 
 **Now you can open the browser with localhost:3000 (you can change the port in the .env file).**
