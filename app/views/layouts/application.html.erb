@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RegistrationSystem</title>
+    <title>RegSys</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if current_user %>
+      <%= link_to 'Log out', destroy_session_path, method: :delete %>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <div style="color: green;">
+        <p><%= notice %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div style="color: red;">
+        <p><%= alert %></p>
+      </div>
+    <% end %>
+
+    <%= yield %> 
   </body>
+
+  <%= javascript_include_tag 'application' %>
 </html>
