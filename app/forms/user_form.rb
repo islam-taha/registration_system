@@ -29,9 +29,7 @@ class UserForm
   end
 
   def save
-    if valid?
-      create_user
-    end
+    create_user if valid?
   end
 
   private

@@ -41,7 +41,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     put update_profile_url, params: {
       user: {
         name: 'abcdefg',
-        email: 'abc@example.com',
+        email: 'abc@example.com'
       }
     }
 
@@ -54,7 +54,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'PUT #update with invalid name' do
     put update_profile_url, params: {
       user: {
-        name: 'a',
+        name: 'a'
       }
     }
 
