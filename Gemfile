@@ -11,6 +11,9 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 gem 'sqlite3', '~> 1.3.6'
 
+# jquery
+gem 'jquery-rails'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -29,6 +32,10 @@ group :development, :test do
 
   # Load your env vars correctly
   gem 'dotenv-rails'
+end
+
+group :test do
+  gem 'rails-controller-testing'
 end
 
 group :development do

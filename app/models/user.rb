@@ -1,8 +1,25 @@
 class User < ApplicationRecord
   has_secure_password
 
-  validates :name,  presence: true, length: { minimum: 5 }
-  validates :email, presence: true,
-                    uniqueness: true,
-                    format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  validates :password, presence: true,
+                       confirmation: true,
+                       length: { minimum: 8, allow_blank: true },
+                       allow_nil: true
+  validates :name,     presence: true, length: { minimum: 5 }, unless: -> { name == initial_name }
+  validates :email,    presence: true,
+                       uniqueness: true,
+                       format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  after_create :send_welcome_email
+
+  private
+
+  def send_welcome_email
+    UserMailer.with(user: self).welcome_email.deliver_later
+  end
+
+  def initial_name
+    email.split('@').first
+  end
 end

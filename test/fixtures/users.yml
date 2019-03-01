@@ -3,13 +3,13 @@
 valid:
   name: islam
   email: <%= Faker::Internet.unique.email %>
-  password_digest: 12345818
+  password_digest: <%= BCrypt::Password.create('asdfasdf') %>
 
 invalid_name:
   email: <%= Faker::Internet.unique.email %>
-  password_digest: 12345818
+  password_digest: <%= BCrypt::Password.create('asdfasdf') %>
 
 invalid_email:
   name: islam
   email: islam
-  password_digest: 12345818
+  password_digest: <%= BCrypt::Password.create('asdfasdf') %>
