@@ -60,8 +60,8 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     token = set_reset_password_token
 
     put update_password_url, params: {
-      reset_password_token: token,
       user: {
+        reset_password_token: token,
         password: 'asdfasdf',
         password_confirmation: 'asdfasdf'
       }
@@ -75,8 +75,8 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     token = set_reset_password_token
 
     put update_password_url, params: {
-      reset_password_token: token,
       user: {
+        reset_password_token: token,
         password: '12345678'
       }
     }
@@ -90,8 +90,8 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
 
     travel(6.hours + 1.second) do
       put update_password_url, params: {
-        reset_password_token: token,
         user: {
+          reset_password_token: token,
           password: '12345678',
           password_confirmation: '12345678'
         }

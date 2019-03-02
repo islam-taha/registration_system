@@ -16,10 +16,7 @@ class PasswordsController < ApplicationController
   end
 
   def edit
-    @user                      = User.new
-    @minimum_password_length   = User::MINIMUM_PASSWORD_LENGTH
-
-    @user.reset_password_token = params[:reset_password_token]
+    @user = User.new
   end
 
   def update
@@ -30,7 +27,7 @@ class PasswordsController < ApplicationController
 
       redirect_to profile_path, notice: 'Password resetted successfully!'
     else
-      redirect_to edit_password_path(reset_password_token: params[:reset_password_token]),
+      redirect_to edit_password_path(reset_password_token: user_params[:reset_password_token]),
                   alert: @user.errors.to_a.join(', ')
     end
   end
@@ -56,7 +53,7 @@ class PasswordsController < ApplicationController
   end
 
   def reset_password_token_by_pub_key
-    Users::Passwords.digest(:reset_password_token, params[:reset_password_token])
+    Users::Passwords.digest(:reset_password_token, user_params[:reset_password_token])
   end
 
   def reset_password_by_token
@@ -64,6 +61,6 @@ class PasswordsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :reset_password_token)
   end
 end

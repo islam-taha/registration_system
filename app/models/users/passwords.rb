@@ -12,15 +12,19 @@ module Users
     MINIMUM_PASSWORD_LENGTH = 8
     DIGEST                  = 'SHA256'.freeze
 
-    def self.digest(col, value)
-      value.present? && OpenSSL::HMAC.hexdigest(DIGEST, col.to_s, value.to_s)
+    def self.digest(_col, value)
+      key = KeyGenerator.generate_key('USERS reset_password_token')
+
+      value.present? && OpenSSL::HMAC.hexdigest(DIGEST, key, value.to_s)
     end
 
     def generate_unique_token
+      key = KeyGenerator.generate_key('USERS reset_password_token')
+
       loop do
-        key   = SecureRandom.hex(20)
-        token = OpenSSL::HMAC.hexdigest(DIGEST, 'reset_password_token', key)
-        break [key, token] unless User.find_by(reset_password_token: token)
+        raw_data = SecureRandom.hex(20)
+        token    = OpenSSL::HMAC.hexdigest(DIGEST, key, raw_data)
+        break [raw_data, token] unless User.find_by(reset_password_token: token)
       end
     end
 
