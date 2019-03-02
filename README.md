@@ -11,6 +11,8 @@ ruby version `2.6.1`
 3. `bundle exec rake db:create`
 4. `bundle exec rake db:migrate`
 
+**secret_token inside .env/.env.test files is so important to exist**
+
 ## Running the server
 - `bundle exec foreman s -e .env`
 
