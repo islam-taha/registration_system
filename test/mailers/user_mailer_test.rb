@@ -15,7 +15,7 @@ class UserMailerTest < ActionMailer::TestCase
   end
 
   test 'reset_password' do
-    user  = users(:valid)
+    user = users(:valid)
     user.set_reset_password_token
 
     email = UserMailer.with(user: user, token: user.pub_key).reset_password

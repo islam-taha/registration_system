@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Users::Passwords 
+  include Users::Passwords
 
   has_secure_password
 

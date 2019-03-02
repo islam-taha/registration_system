@@ -25,9 +25,7 @@ class PasswordsController < ApplicationController
   def update
     @user = reset_password_by_token
 
-    if @user &&
-        @user.reset_password_period_within_range? &&
-        @user.reset_password(user_params[:password], user_params[:password_confirmation])
+    if @user.token_not_expired_and_reset_success?(user_params)
       sign_in(@user)
 
       redirect_to profile_path, notice: 'Password resetted successfully!'
@@ -39,10 +37,12 @@ class PasswordsController < ApplicationController
 
   private
 
+  def blank_token
+    params[:reset_password_token].blank?
+  end
+
   def redirect_if_no_token
-    if params[:reset_password_token].blank?
-      redirect_to session_path, alert: 'No password token found!'
-    end
+    redirect_to session_path, alert: 'No password token found!' if blank_token
   end
 
   def send_reset_password_token_info

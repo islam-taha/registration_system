@@ -4,6 +4,6 @@ namespace :test do
 
     SimpleCov.start 'rails' # feel free to pass block
 
-    Rake::Task["test"].execute
+    Rake::Task['test'].execute
   end
 end

@@ -1,10 +1,15 @@
+# This module is responsible for all reset passwords scenario
+# starting from generating tokens to sending reset passwords
+# email ending with authorizing the public token given in the
+# reset link.
+
 require 'openssl'
 
 module Users
   module Passwords
     attr_accessor :pub_key
 
-    MINIMUM_PASSWORD_LENGTH = 8.freeze
+    MINIMUM_PASSWORD_LENGTH = 8
     DIGEST                  = 'SHA256'.freeze
 
     def self.digest(col, value)
@@ -39,7 +44,7 @@ module Users
 
     def reset_password(new_password, new_password_confirmation)
       if new_password.present? && new_password == new_password_confirmation
-        self.password              = new_password 
+        self.password              = new_password
         self.password_confirmation = new_password_confirmation
 
         save(validate: true)
@@ -54,6 +59,11 @@ module Users
       reset_password_token_sent_at &&
         reset_password_token_sent_at.utc >=
           ActAsAuthorizable::RESET_PASSWORD_TOKEN_EXPIRY_PERIOD.ago.utc
+    end
+
+    def token_not_expired_and_reset_success?(user_params)
+      reset_password_period_within_range? &&
+        reset_password(user_params[:password], user_params[:password_confirmation])
     end
   end
 end

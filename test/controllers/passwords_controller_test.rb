@@ -77,7 +77,7 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     put update_password_url, params: {
       reset_password_token: token,
       user: {
-        password: '12345678',
+        password: '12345678'
       }
     }
 
