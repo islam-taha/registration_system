@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
       redirect_to registration_path, alert: UNAUTHORIZED_ALERT
     end
   end
+
+  def redirect_if_authenticated!
+    redirect_to profile_path if current_user
+  end
 end

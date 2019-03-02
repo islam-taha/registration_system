@@ -19,10 +19,6 @@ class RegistrationsController < BaseController
 
   private
 
-  def redirect_if_authenticated!
-    redirect_to profile_path if current_user
-  end
-
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
