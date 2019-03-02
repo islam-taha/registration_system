@@ -20,6 +20,6 @@ module RegistrationSystem
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
-    config.autoload_paths << "#{config.root}/app/forms"
+    config.autoload_paths << "#{config.root}/app/**/*"
   end
 end

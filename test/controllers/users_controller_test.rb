@@ -7,6 +7,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     sign_in(@user)
   end
 
+  test 'GET #show' do
+    get profile_url
+
+    assert_equal response.status, 200
+  end
+
   test 'PUT #update with valid data' do
     put update_profile_url, params: {
       user: {

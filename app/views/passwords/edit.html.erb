@@ -1,0 +1,17 @@
+<%= link_to 'Sign In', session_path %>
+
+<h1>Reset your password</h1>
+
+<%= form_for @user, url: update_password_path, method: :put do |f| %>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.submit 'Update!' %>
+  </div>
+<% end %>

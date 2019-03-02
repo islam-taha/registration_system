@@ -1,5 +1,6 @@
 module ActAsAuthorizable
-  UNAUTHORIZED_ALERT = 'You must be logged in to access this page.'.freeze
+  UNAUTHORIZED_ALERT                 = 'You must be logged in to access this page.'.freeze
+  RESET_PASSWORD_TOKEN_EXPIRY_PERIOD = 6.hours.freeze
 
   def sign_in(user)
     session[:user_id]             = user.id

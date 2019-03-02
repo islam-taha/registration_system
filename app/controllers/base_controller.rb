@@ -3,10 +3,6 @@ class BaseController < ApplicationController
 
   before_action :log_request
 
-  rescue_from ActionController::UnpermittedParameters do |exception|
-    render_and_log(json: { errors: exception.message }, status: :unprocessable_entity)
-  end
-
   rescue_from ActionView::MissingTemplate do |exception|
     render_and_log(json: { errors: exception.message }, status: :not_implemented)
   end

@@ -18,10 +18,6 @@ class UsersController < BaseController
 
   private
 
-  def user_email
-    params[:user][:email]
-  end
-
   def user_params
     @user_params ||= params.require(:user).permit(:name, :password, :password_confirmation)
 
