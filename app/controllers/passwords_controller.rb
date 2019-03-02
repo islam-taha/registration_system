@@ -6,9 +6,9 @@ class PasswordsController < ApplicationController
   end
 
   def create
-    @user = send_reset_password_token_info
+    sent_successfully = send_reset_password_token_info
 
-    if @user
+    if sent_successfully
       redirect_to password_path, notice: 'Reset password instructions sent successfully!'
     else
       redirect_to password_path, alert: 'No user found with this email!'
