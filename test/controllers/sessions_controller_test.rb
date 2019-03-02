@@ -31,4 +31,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to session_path
     assert_equal flash[:alert], 'Incorrect email or password, please try again later'
   end
+
+  test 'DELETE #destroy should redirect' do
+    user = users(:valid)
+
+    sign_in(user)
+
+    delete destroy_session_path
+    assert_redirected_to session_path
+    assert_equal flash[:notice], 'Logged out successfully!'
+  end
 end

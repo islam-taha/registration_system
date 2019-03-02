@@ -1,17 +1,23 @@
 require 'test_helper'
 
 class RegistrationsControllerTest < ActionDispatch::IntegrationTest
-  test 'POST #create with valid data' do
-    assert_difference('User.count') do
-      post new_registration_url, params: {
-        user: { email: 'abc@example.com',
-                password: 'asdfasdf',
-                password_confirmation: 'asdfasdf' }
-      }
-    end
+  include ActionMailer::TestHelper
+  include ActiveJob::TestHelper
 
-    assert_redirected_to profile_path
-    assert_equal 'Account created successfully!', flash[:notice]
+  test 'POST #create with valid data' do
+    perform_enqueued_jobs do
+      assert_difference('User.count') do
+        post new_registration_url, params: {
+          user: { email: 'abc@example.com',
+                  password: 'asdfasdf',
+                  password_confirmation: 'asdfasdf' }
+        }
+      end
+
+      assert_emails 1
+      assert_redirected_to profile_path
+      assert_equal 'Account created successfully!', flash[:notice]
+    end
   end
 
   test 'POST #create with invalid email' do

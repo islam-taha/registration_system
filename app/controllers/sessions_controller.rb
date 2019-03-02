@@ -18,7 +18,7 @@ class SessionsController < BaseController
   def destroy
     sign_out
 
-    redirect_to registration_path, notice: 'Logged out successfully!'
+    redirect_to session_path, notice: 'Logged out successfully!'
   end
 
   private
