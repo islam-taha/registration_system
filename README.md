@@ -18,6 +18,7 @@ ruby version `2.6.1`
 
 ## Running test cases
 1. `RAILS_ENV=test be rake db:create db:migrate`
-2. `be rails test`
+2. `bundle exec rails test`
 
 **Now you can open the browser with localhost:3000 (you can change the port in the .env file).**
+*DB used is sqlite3*
