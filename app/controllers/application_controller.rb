@@ -10,9 +10,11 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate_user!
-    if signed_in_before? && !current_user
+    return if current_user
+
+    if signed_in_before?
       redirect_to session_path,      alert: UNAUTHORIZED_ALERT
-    elsif !current_user
+    else
       redirect_to registration_path, alert: UNAUTHORIZED_ALERT
     end
   end
