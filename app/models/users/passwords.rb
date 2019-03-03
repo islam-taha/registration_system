@@ -43,7 +43,7 @@ module Users
       set_reset_password_token
       send_reset_password_email
 
-      self
+      true
     end
 
     def reset_password(new_password, new_password_confirmation)
