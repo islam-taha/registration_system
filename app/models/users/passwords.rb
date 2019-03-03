@@ -51,7 +51,7 @@ module Users
         self.password              = new_password
         self.password_confirmation = new_password_confirmation
 
-        save(validate: true)
+        save
       else
         errors[:base] << 'Password and Password confirmation did not match'
 
