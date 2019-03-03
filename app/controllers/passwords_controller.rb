@@ -20,7 +20,7 @@ class PasswordsController < ApplicationController
   end
 
   def update
-    @user = reset_password_by_token
+    @user = load_user_by_token
 
     if @user.token_not_expired_and_reset_success?(user_params)
       sign_in(@user)
@@ -56,7 +56,7 @@ class PasswordsController < ApplicationController
     Users::Passwords.digest(:reset_password_token, user_params[:reset_password_token])
   end
 
-  def reset_password_by_token
+  def load_user_by_token
     User.find_by(reset_password_token: reset_password_token_by_pub_key)
   end
 
